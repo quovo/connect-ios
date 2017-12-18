@@ -9,34 +9,17 @@
 Pod::Spec.new do |s|
   s.name             = 'connect-ios'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of connect-ios.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.summary          = 'Embed Quovo Connect into your mobile apps.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+connect-ios is a valuable, easy-to-use swift SDK that you can use to embed Quovo Connect into your mobile apps to help your users link their financial accounts. Connect integrates with the rest of Quovo’s API suite, providing a seamless and user-friendly sync process.
                        DESC
 
   s.homepage         = 'https://github.com/Quovo/connect-ios'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Quovo' => 'info@quovo.com' }
   s.source           = { :git => 'https://github.com/Quovo/connect-ios.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
-
-  s.source_files = 'connect-ios/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'connect-ios' => ['connect-ios/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.platform = :ios, '8.0'
+  s.ios.vendored_frameworks = 'QuovoConnectSDK.framework'
 end

@@ -1,13 +1,49 @@
 # Quovo Connect - iOS SDK
 ## Installation
 
-1. Open your project in Xcode.
-2. Drag the QuovoConnectSDK.framework into your project
-3. Highlight your project in the 'Project Navigator'.
-4. Select the 'Build Phases' tab
-5. Open the 'Embed Frameworks' expander.
-6. Click the + button and select QuovoConnectSDK.framework
-7. Make sure "Code Sign on Copy" is enabled
+### Using CocoaPods
+
+  1. Add connect-ios to your project by adding the line `pod QuovoConnect` to your `podfile`.
+  2. Run `pod install`
+  3. Add the following script to Archive -> Pre-actions in your application's scheme
+  ```
+  FRAMEWORK_NAME="QuovoConnect"
+  cd ${SRCROOT}/Pods/${FRAMEWORK_NAME}/
+  if [ -f "${FRAMEWORK_NAME}.zip" ]
+  then
+      unzip -o ${FRAMEWORK_NAME}.zip
+  else
+      zip -r ${FRAMEWORK_NAME}.zip ./${FRAMEWORK_NAME}.framework
+  fi
+  lipo ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME} -thin armv7 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7
+  lipo ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME} -thin arm64 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64
+  rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}
+  lipo -create ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7 ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}
+  rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7
+  rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64
+  rm -rf ${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/i386*
+  rm -rf ${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/x86*
+  ```
+  4. Add the following script to Archive -> Post-actions
+  ```
+  FRAMEWORK_NAME="QuovoConnect"
+  cd ${SRCROOT}/Pods/${FRAMEWORK_NAME}/
+  rm -rf ./${FRAMEWORK_NAME}.framework
+  unzip -o ${FRAMEWORK_NAME}.zip
+  rm -rf ${FRAMEWORK_NAME}.zip
+  ```
+
+  Note: Steps 3 and 4 are required in order to be able to test connect-ios using the Xcode simulators and still be able to publish via the App Store. If you're only interested in using connect-ios for development, you can skip those steps until you're ready to publish.
+
+### Manual Installation
+
+  1. Open your project in Xcode.
+  2. Drag the QuovoConnectSDK.framework into your project
+  3. Highlight your project in the 'Project Navigator'.
+  4. Select the 'Build Phases' tab
+  5. Open the 'Embed Frameworks' expander.
+  6. Click the + button and select QuovoConnectSDK.framework
+  7. Make sure "Code Sign on Copy" is enabled
 
 ## Initialize the SDK
 

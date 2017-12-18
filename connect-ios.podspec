@@ -1,15 +1,7 @@
-#
-# Be sure to run `pod lib lint connect-ios.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'connect-ios'
   s.version          = '0.1.0'
-  s.summary          = 'Embed Quovo Connect into your mobile apps.'
+  s.summary          = 'Quovo Connect Swift SDK'
 
   s.description      = <<-DESC
 connect-ios is a valuable, easy-to-use swift SDK that you can use to embed Quovo Connect into your mobile apps to help your users link their financial accounts. Connect integrates with the rest of Quovo’s API suite, providing a seamless and user-friendly sync process.

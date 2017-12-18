@@ -106,7 +106,7 @@ Here are some examples:
 
 The other callbacks will yield an empty response. For more information on these events, please see:
 
-(https://api.quovo.com/docs/connect/#scustom-integrations)
+(https://api.quovo.com/docs/connect/#custom-integrations)
 
 ## Launch the SDK
 

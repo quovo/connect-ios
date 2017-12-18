@@ -57,6 +57,7 @@ A good place to initialize the SDK is upon app launch or in the launch method of
 
 ```SWIFT
 func complete(callback: String, response: NSDictionary) {
+
 }
 
 quovoConnect.completionHandler = complete
@@ -78,28 +79,28 @@ Here are some examples:
 
 ```swift
 [
-"connection": [
-"id": 2135634,
-"institution": 34,
-"user": 1123
-],
-"timeStamp": 1496879583157
+  "connection": [
+    "id": 2135634,
+    "institution": 34,
+    "user": 1123,
+  ],
+  "timeStamp": 1496879583157,
 ]
 ```
 
 "Sync" event fired
 ```swift
 [
-"connection": [
-"id": 2135634,
-"institution": 34,
-"user": 1123
-],
-"sync": [
-"authenticated": false,
-"status": "questions"
-],
-"timeStamp": 1496879583157
+  "connection": [
+    "id": 2135634,
+    "institution": 34,
+    "user": 1123,
+  ],
+  "sync": [
+    "authenticated": false,
+    "status": "questions",
+  ],
+  "timeStamp": 1496879583157,
 ]
 ```
 
@@ -112,7 +113,7 @@ The other callbacks will yield an empty response. For more information on these 
 Launching the QuovoConnectSDK will instantiate a WebView experience that allows users to sync and manage their accounts. The minimum required parameter for launching the WebView is an Iframe Token.  This token must be generated via the API and will expire after its first use.
 
 ```swift
-quovoConnect.launch( token:"IFRAME TOKEN HERE" )
+quovoConnect.launch(token: "IFRAME TOKEN HERE")
 ```
 
 ## Customization
@@ -121,11 +122,11 @@ You can optionally pass in a set of parameters that control the appearance and f
 
 ```swift
 quovoConnect.launch(
-token: "IFRAME TOKEN HERE",
-options: [
-"testInstitutions": 1,
-"topInstitutions": "banks",
-]
+  token: "IFRAME TOKEN HERE",
+  options: [
+    "testInstitutions": 1,
+    "topInstitutions": "banks",
+  ]
 )
 ```
 
@@ -139,12 +140,12 @@ Some options, such as preselecting an institution or updating an existing accoun
 
 ```swift
 quovoConnect.launch(
-token: "IFRAME TOKEN HERE",
-options: [
-"testInstitutions": 1,
-"topInstitutions": "banks",
-"open-institution": 34,
-]
+  token: "IFRAME TOKEN HERE",
+  options: [
+    "testInstitutions": 1,
+    "topInstitutions": "banks",
+    "open-institution": 34,
+  ]
 )
 ```
 

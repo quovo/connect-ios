@@ -22,11 +22,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func launch(_ sender: Any) {
-        let quovoConnect = QuovoConnectSDK()
+        // Use your API token and user id to get a token for the user
+        let apiToken = "[your_api_token]";
+        let userId = 000000; // user id
+
+        let userTokenRequest = buildUserTokenRequest(apiToken: apiToken, userId: userId)
         
-        quovoConnect.completionHandler = complete
-    quovoConnect.launch(token:"IFRAME TOKEN HERE", options:["testInstitutions":1])
-        
+        let task = URLSession.shared.dataTask(with: userTokenRequest) { data, response, error in
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print("Bad response: \(response!)")
+            } else {
+                do {
+                    let jsonResult = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                    let userToken = (jsonResult["iframe_token"] as? [String: Any])?["token"] as? String
+                    DispatchQueue.main.async {
+                        let quovoConnect = QuovoConnectSDK()
+                        quovoConnect.completionHandler = self.complete
+                        quovoConnect.customTitle = "Quovo Connect"
+                        quovoConnect.launch(token: userToken!, options:["testInstitutions":1,"singleSync":1])
+                    }
+                } catch {
+                    print("Token parsing failed")
+                }
+            }
+        }
+        task.resume()
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,6 +54,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func buildUserTokenRequest(apiToken: String, userId: Int) -> URLRequest {
+        let iframeTokenUrl = URL(string: "https://api.quovo.com/v2/iframe_token");
+        var iframeTokenRequest = URLRequest(url:iframeTokenUrl!);
+        iframeTokenRequest.httpMethod = "POST";
+        iframeTokenRequest.setValue("application/json", forHTTPHeaderField: "Content-Type");
+        iframeTokenRequest.setValue("Bearer " + apiToken, forHTTPHeaderField: "Authorization");
+        let jsonData = try? JSONSerialization.data(withJSONObject: ["user": userId])
+        iframeTokenRequest.httpBody =  jsonData;
+        return  iframeTokenRequest;
+    }
+
 }
 

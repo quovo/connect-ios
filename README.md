@@ -149,3 +149,9 @@ quovoConnect.launch(
 )
 ```
 
+Additionally, you have the option to customize the navbar title for the QuovoConnect WebView:
+
+```swift
+quovoConnect.customTitle = "Quovo Connect"
+```
+

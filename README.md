@@ -132,10 +132,10 @@ quovoConnect.launch(
 
 The following is a list of the optional parameters that can be supplied to the launch method:
 
-| Field                | Type          | Default Value | Description |
+| Field                | Type          | Default       | Description |
 | -------------------- | ------------- | ------------- | ----------- |
 | topInstitutions      | string        | 'all'         | Choose what type of institutions, if any, will be displayed in the Top Institutions portion of the institution select screen. Possible values are `banks`, `brokerages`, `all`, or `none`. |
-| *enableAuthDeposits* | integer (bit) | 0             | If on, the [Auth Deposits](https://api.quovo.com/docs/auth/#auth_deposits) workflow will be enabled within Connect. This lets end users verify their bank accounts on any institution not covered by instant account verification. Note: This workflow is _not_ available by default. [Contact us](mailto:support@quovo.com) if you would like access to Auth Deposits within Connect. |
+| enableAuthDeposits   | integer (bit) | 0             | If on, the [Auth Deposits](https://api.quovo.com/docs/auth/#auth_deposits) workflow will be enabled within Connect. This lets end users verify their bank accounts on any institution not covered by instant account verification. Note: This workflow is _not_ available by default. [Contact us](mailto:support@quovo.com) if you would like access to Auth Deposits within Connect. |
 | singleSync           | integer (bit) | 0             | If on, the "Connect Another Account" button will be hidden. This button appears once an Account has been successfully synced to prompt the User to add any additional Accounts they may have. |
 | searchTest           | integer (bit) | 0             | If on, Quovo test institutions will be searchable within Connect. |
 | openInstitution      | integer       |               | [See Preselect an Institution](#preselect-an-institution) |

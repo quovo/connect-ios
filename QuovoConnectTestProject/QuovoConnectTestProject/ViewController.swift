@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     
     @IBAction func launch(_ sender: Any) {
         // Use your API token and user id to get a token for the user
-        let apiToken = "[your_api_token]";
-        let userId = 000000; // user id
+        let apiToken = "{quovo_api_token}";
+        let userId = 0000; // user id
 
         let userTokenRequest = buildUserTokenRequest(apiToken: apiToken, userId: userId)
         
@@ -38,8 +38,11 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         let quovoConnect = QuovoConnectSDK()
                         quovoConnect.completionHandler = self.complete
-                        quovoConnect.customTitle = "Quovo Connect"
-                        quovoConnect.launch(token: userToken!, options:["testInstitutions":1,"singleSync":1])
+                        quovoConnect.customTitle = "Connect Your Accounts"
+                        quovoConnect.launch(token: userToken!, options:[
+                            "testInstitutions": 0,
+                            "topInstitutions": "all",
+                        ])
                     }
                 } catch {
                     print("Token parsing failed")

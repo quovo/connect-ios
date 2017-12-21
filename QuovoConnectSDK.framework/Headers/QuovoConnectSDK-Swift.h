@@ -190,6 +190,7 @@ SWIFT_MODULE_NAMESPACE_PUSH("QuovoConnectSDK")
 SWIFT_CLASS("_TtC15QuovoConnectSDK15QuovoConnectSDK")
 @interface QuovoConnectSDK : NSObject
 - (nonnull instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nonnull customTitle;
 @property (nonatomic, copy) void (^ _Nonnull completionHandler)(NSString * _Nonnull, NSDictionary * _Nonnull);
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)launchWithToken:(NSString * _Nonnull)token;

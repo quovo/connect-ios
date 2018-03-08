@@ -186,12 +186,14 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 SWIFT_MODULE_NAMESPACE_PUSH("QuovoConnectSDK")
 @class NSCoder;
 @class NSDictionary;
+@class UIViewController;
 
 SWIFT_CLASS("_TtC15QuovoConnectSDK15QuovoConnectSDK")
 @interface QuovoConnectSDK : NSObject
 - (nonnull instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, copy) NSString * _Nonnull customTitle;
 @property (nonatomic, copy) void (^ _Nonnull completionHandler)(NSString * _Nonnull, NSDictionary * _Nonnull);
+@property (nonatomic, strong) UIViewController * _Nullable parentViewController;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)launchWithToken:(NSString * _Nonnull)token;
 - (void)launchWithToken:(NSString * _Nonnull)token options:(NSDictionary * _Nonnull)options;

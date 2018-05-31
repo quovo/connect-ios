@@ -183,10 +183,15 @@ options: [
 )
 ```
 
-## Custom Navbar Title
+## Custom Navbar
 
-You also have the option to customize the navbar title for the QuovoConnect WebView:
+You also have the option to customize the navbar  for the QuovoConnect WebView:
 
 ```swift
-quovoConnect.customTitle = "Connect Your Accounts"
+//Passing paramater isTranslucent as "true" makes the navigation bar  transparent and cutome title can empty or string
+ quovoConnect.customizeNavigationBarApperance(isTranslucent: true, backGroundColor: UIColor.white, customTitle: "Quovo Connect")
+ //Passing paramater isTranslucent as "false" makes the navigation bar  non transparent and can set the custom color as "UIColor.blue" or any other prefered color.
+ quovoConnect.customizeNavigationBarApperance(isTranslucent: false, backGroundColor: UIColor.blue, customTitle: "Quovo Connect")
 ```
+
+

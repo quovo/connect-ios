@@ -12,18 +12,18 @@
 		86A1B4CC1EEADD6D00BF1947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CA1EEADD6D00BF1947 /* Main.storyboard */; };
 		86A1B4CE1EEADD6D00BF1947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */; };
 		86A1B4D11EEADD6D00BF1947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CF1EEADD6D00BF1947 /* LaunchScreen.storyboard */; };
-		B28A6B1220AF85BF0095C50F /* QuovoConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B29AE2E820AF852700755095 /* QuovoConnectSDK.framework */; };
-		B28A6B1320AF85BF0095C50F /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B29AE2E820AF852700755095 /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2A4548920C054F400827568 /* QuovoConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4548820C054F400827568 /* QuovoConnectSDK.framework */; };
+		B2A4548B20C0554400827568 /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2A4548820C054F400827568 /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		86A1B4E91EEADF9A00BF1947 /* Embed Frameworks */ = {
+		B2A4548C20C0554400827568 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B28A6B1320AF85BF0095C50F /* QuovoConnectSDK.framework in Embed Frameworks */,
+				B2A4548B20C0554400827568 /* QuovoConnectSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +38,7 @@
 		86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A1B4D01EEADD6D00BF1947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A1B4D21EEADD6D00BF1947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B29AE2E820AF852700755095 /* QuovoConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuovoConnectSDK.framework; sourceTree = "<group>"; };
+		B2A4548820C054F400827568 /* QuovoConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuovoConnectSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B28A6B1220AF85BF0095C50F /* QuovoConnectSDK.framework in Frameworks */,
+				B2A4548920C054F400827568 /* QuovoConnectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +56,9 @@
 		86A1B4BA1EEADD6D00BF1947 = {
 			isa = PBXGroup;
 			children = (
+				B2A4548820C054F400827568 /* QuovoConnectSDK.framework */,
 				86A1B4C51EEADD6D00BF1947 /* QuovoConnectTestProject */,
 				86A1B4C41EEADD6D00BF1947 /* Products */,
-				B2A08B7320AF74CE00BF434A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,14 +83,6 @@
 			path = QuovoConnectTestProject;
 			sourceTree = "<group>";
 		};
-		B2A08B7320AF74CE00BF434A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B29AE2E820AF852700755095 /* QuovoConnectSDK.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,7 +93,7 @@
 				86A1B4BF1EEADD6D00BF1947 /* Sources */,
 				86A1B4C01EEADD6D00BF1947 /* Frameworks */,
 				86A1B4C11EEADD6D00BF1947 /* Resources */,
-				86A1B4E91EEADF9A00BF1947 /* Embed Frameworks */,
+				B2A4548C20C0554400827568 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,7 +283,6 @@
 		86A1B4D61EEADD6D00BF1947 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B953VH7H7S;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -310,7 +301,6 @@
 		86A1B4D71EEADD6D00BF1947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B953VH7H7S;
 				FRAMEWORK_SEARCH_PATHS = (

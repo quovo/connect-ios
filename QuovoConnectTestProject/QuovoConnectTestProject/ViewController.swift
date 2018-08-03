@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     
     @IBAction func launch(_ sender: Any) {
         // Use your API token and user id to get a token for the user
-        let apiToken = "[your_api_token]"
-        let userId = 0000000 // user id
+        let apiToken = "d0423077f6954e4f38e3556d1dab5b9cfc7e7fc5a8bb08a536809e192a94433f"
+        let userId = 7498 // user id
 
         let userTokenRequest = buildUserTokenRequest(apiToken: apiToken, userId: userId)
         

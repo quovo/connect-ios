@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'QuovoConnect'
-  s.version          = '0.6.2'
+  s.version          = '0.6.3'
   s.summary          = 'Quovo Connect Swift SDK'
 
   s.description      = <<-DESC
@@ -12,6 +12,6 @@ connect-ios is a valuable, easy-to-use swift SDK that you can use to embed Quovo
   s.author           = { 'Quovo' => 'info@quovo.com' }
   s.source           = { :git => 'https://github.com/Quovo/connect-ios.git', :tag => "v#{s.version.to_s}" }
 
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '9.0'
   s.ios.vendored_frameworks = 'QuovoConnectSDK.framework'
 end

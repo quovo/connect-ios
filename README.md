@@ -1,49 +1,25 @@
 # Quovo Connect - iOS SDK
 ## Installation
 
+You can install the Quovo Connect SDK either by using Cocoapods or by installing the framework manually.
+
+### Using CocoaPods (**Recommended**)
+If needed install and setup cocoapods: https://guides.cocoapods.org/using/using-cocoapods
+
+1. Add connect-ios to your project by adding the line `pod 'QuovoConnect'` to your `Podfile`.
+2. Run `pod install`
+3. Open the xcworkspace
+
 ### Manual Installation
 
-1. Open your project in Xcode.
-2. Drag the QuovoConnectSDK.framework into your project
-3. Highlight your project in the 'Project Navigator'.
-4. Select the 'Build Phases' tab
-5. Open the 'Embed Frameworks' expander.
-6. Click the + button and select QuovoConnectSDK.framework
-7. Make sure "Code Sign on Copy" is enabled
+1. Download or clone the framework from https://github.com/quovo/connect-ios
+2. Open your project's General settings page. Drag QuovoConnectSDK.framework in to the "Embedded Binaries" section. Make sure `Copy items if needed` is selected.
+3. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase" (note: this should be below the 'Embed Frameworks' Phase)
+4. Open the new 'Run Script' expander.
+5. Enter this line into the script box:<br>
+`/bin/sh $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/QuovoConnectSDK.framework/cleanForAppStore.sh`<br>
+This script is required to work around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) 
 
-### Using CocoaPods
-
-1. Add connect-ios to your project by adding the line `pod QuovoConnect` to your `podfile`.
-2. Run `pod install`
-3. Add the following script to Archive -> Pre-actions in your application's scheme
-```
-FRAMEWORK_NAME="QuovoConnect"
-cd ${SRCROOT}/Pods/${FRAMEWORK_NAME}/
-if [ -f "${FRAMEWORK_NAME}.zip" ]
-then
-unzip -o ${FRAMEWORK_NAME}.zip
-else
-zip -r ${FRAMEWORK_NAME}.zip ./${FRAMEWORK_NAME}.framework
-fi
-lipo ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME} -thin armv7 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7
-lipo ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME} -thin arm64 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64
-rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}
-lipo -create ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7 ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64 -output ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}
-rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}armv7
-rm -rf ${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}arm64
-rm -rf ${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/i386*
-rm -rf ${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/x86*
-```
-4. Add the following script to Archive -> Post-actions
-```
-FRAMEWORK_NAME="QuovoConnect"
-cd ${SRCROOT}/Pods/${FRAMEWORK_NAME}/
-rm -rf ./${FRAMEWORK_NAME}.framework
-unzip -o ${FRAMEWORK_NAME}.zip
-rm -rf ${FRAMEWORK_NAME}.zip
-```
-
-**Note:** Steps 3 and 4 are required in order to be able to test connect-ios using the Xcode simulators and still be able to publish via the App Store. If you're only interested in using connect-ios for development, you can skip those steps until you're ready to publish.
 
 ## Initialize the SDK
 
@@ -190,13 +166,13 @@ You also have the option to customize the navbar  for the QuovoConnect WebView. 
 The `isTranslucent` parameter will take precedence over the `backGroundColor` parameter. 
 
 ```swift
- quovoConnect.customizeNavigationBarApperance(
-    isTranslucent: true,
-    //The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
-    backGroundColor: UIColor.white, 
-    //The backGroundColor parameter allows you to choose the color of the navbar.
-    customTitle: "Quovo Connect")
-    //The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
+quovoConnect.customizeNavigationBarApperance(
+isTranslucent: true,
+//The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
+backGroundColor: UIColor.white, 
+//The backGroundColor parameter allows you to choose the color of the navbar.
+customTitle: "Quovo Connect")
+//The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
 ```
 
 

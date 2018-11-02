@@ -206,13 +206,13 @@ You also have the option to customize the navbar  for the QuovoConnect WebView. 
 The `isTranslucent` parameter will take precedence over the `backGroundColor` parameter. 
 
 ```swift
- quovoConnect.customizeNavigationBarApperance(
-    isTranslucent: true,
-    //The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
-    backGroundColor: UIColor.white, 
-    //The backGroundColor parameter allows you to choose the color of the navbar.
-    customTitle: "Quovo Connect")
-    //The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
+quovoConnect.customizeNavigationBarApperance(
+isTranslucent: true,
+//The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
+backGroundColor: UIColor.white, 
+//The backGroundColor parameter allows you to choose the color of the navbar.
+customTitle: "Quovo Connect")
+//The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
 ```
 
 

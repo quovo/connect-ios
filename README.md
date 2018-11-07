@@ -10,6 +10,27 @@ If needed install and setup cocoapods: https://guides.cocoapods.org/using/using-
 2. Run `pod install`
 3. Open the xcworkspace
 
+### Using Carthage    
+If needed install and setup carthage: https://github.com/Carthage/Carthage#quick-start    
+
+1. Add connect-ios to your project by adding the line `binary "https://raw.githubusercontent.com/quovo/connect-ios/master/QuovoConnectSDK.json"` to your `Cartfile`.
+2. Run `carthage update`    
+3. If carthage was successful, you should see the framework in the folder Carthage/Build/iOS    
+4. Drag the QuovoConnectSDK.framework into your project (Make sure "Copy Items If Needed" is selected)    
+5. Highlight your project in the 'Project Navigator'.    
+6. Select the 'Build Phases' tab    
+7. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase"    
+8. Open the new 'Run Script' expander.    
+9. Enter this line into the script box:`/usr/local/bin/carthage copy-frameworks`    
+10. Click the + button under “Input Files", and enter: <br>    
+`$(SRCROOT)/Carthage/Build/iOS/QuovoConnectSDK.framework`    
+11. Click the + button under “Output Files", and enter: `$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/QuovoConnectSDK.framework`    
+(note: Make sure to commit your Cartfile.resolved file)    
+##### Optionally to warn about outdated dependencies    
+1. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase"    
+2. Open the new 'Run Script' expander.    
+3. Enter this line into the script box:`/usr/local/bin/carthage outdated --xcode-warnings`
+
 ### Manual Installation
 
 1. Download or clone the framework from https://github.com/quovo/connect-ios
@@ -50,7 +71,6 @@ The completion handler will allow your app to listen for events that will be fir
 * open
 * load
 * close
-* cancel
 * add
 * sync
 
@@ -90,6 +110,26 @@ Here are some examples:
 The other callbacks will yield an empty response. For more information on these events, please see:
 
 (https://api.quovo.com/docs/connect/#custom-integrations)
+
+## Create an Error Handler
+
+```SWIFT
+func error(errorType: String, errorCode: Int, errorMessage: String) {
+// ...
+}
+
+quovoConnect.errorHandler = error
+```
+The error handler will allow your app to listen for errors that have been fired by the QuovoConnectSDK.  The handler has 3 parameters: an "errorType" name, an "errorCode" identifier number and an "errorMessage" string description of the error. The "errorType" string will be one of the following:
+
+* general
+* http
+
+In the case of "http" the errorCode field will be an http code, such as 404. In the case of "general" the errorCode field could be an iOS specific code such as an CFNetworkError or a Quovo specific code
+List of CFNetworkErrors (https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors) 
+The Quovo specific codes include:
+
+* QUOVOERROR_CODE_MISSING_TOKEN:  1
 
 ## Launch the SDK
 

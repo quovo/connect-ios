@@ -1,4 +1,14 @@
 # Quovo Connect - iOS SDK
+
+## Latest Release
+
+### [v0.6.8](https://github.com/quovo/connect-ios/releases/tag/v0.6.8)
+* Added custom timeout
+* Added ability to statically close
+* Added embeddable UIView version
+* Fixed jarring keyboard issue
+* Fixed various bugs
+
 ## Installation
 
 You can install the Quovo Connect SDK either by using Cocoapods or by installing the framework manually.
@@ -133,10 +143,25 @@ The Quovo specific codes include:
 
 ## Launch the SDK
 
-Launching the QuovoConnectSDK will instantiate a WebView experience that allows users to sync and manage their accounts. The minimum required parameter for launching the WebView is an Iframe Token.  This token must be generated via the API and will expire after its first use.
+Launching the QuovoConnectSDK will instantiate a WebView experience that allows users to sync and manage their accounts. The minimum required parameter for launching the WebView is an Iframe Token.  This token must be generated via the API and will expire after its first use. 
 
 ```swift
 quovoConnect.launch(token: "IFRAME TOKEN HERE")
+```
+
+
+This WebView experience can also be created as a View, which can be embedded directly into your application. Note: This view has no Layout Constraints so you will need to add your own.
+
+```swift
+let quovoView:UIView = quovoConnect.generateView(token: "IFRAME TOKEN HERE")
+```
+
+## Close the SDK
+
+The QuovoConnectSDK can be closed statically by using the QuovoConnectSDK class. This allows the SDK to be closed from the parent ViewController as well as a push notification or other external message.
+
+```swift
+QuovoConnectSDK.close()
 ```
 
 ## Customization
@@ -206,13 +231,23 @@ You also have the option to customize the navbar  for the QuovoConnect WebView. 
 The `isTranslucent` parameter will take precedence over the `backGroundColor` parameter. 
 
 ```swift
-quovoConnect.customizeNavigationBarApperance(
-isTranslucent: true,
-//The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
-backGroundColor: UIColor.white, 
-//The backGroundColor parameter allows you to choose the color of the navbar.
-customTitle: "Quovo Connect")
-//The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
+ quovoConnect.customizeNavigationBarApperance(
+    isTranslucent: true,
+    //The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
+    backGroundColor: UIColor.white, 
+    //The backGroundColor parameter allows you to choose the color of the navbar.
+    customTitle: "Quovo Connect")
+    //The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
 ```
 
+## Custom Timeout
 
+By default the Quovo Connect WebView will timeout after 30 seconds of attempting to connect. There is an option to customize the timeout length in seconds by calling `setTimeoutLength`, which takes a `TimeInterval` parameter (aka a double). When a timeout occurs an error will be sent to the ErrorHandler and the WebView will display a simple page stating that the connection timed out.
+
+```swift
+    quovoConnect.setTimeoutLength(seconds:5)
+```
+
+## Using the Test Project
+
+The test project included with the SDK uses a configuration plist file to generate its user token. The file is git-ignored but should be added to your copy of the test project. The file should be named "configuration.plist" and should contain a String field named "apiToken" and a Number field name "userId".

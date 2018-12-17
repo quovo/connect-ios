@@ -242,7 +242,7 @@ The `isTranslucent` parameter will take precedence over the `backGroundColor` pa
 
 ## Custom Timeout
 
-By default the Quovo Connect WebView will timeout after 30 seconds of attempting to connect. There is an option to customize the timeout length in seconds by calling `setTimeoutLength`, which takes a `TimeInterval` parameter (aka a double). When a timeout occurs an error will be sent to the ErrorHandler and the WebView will display a simple page stating that the connection timed out.
+By default the Quovo Connect WebView will timeout after 30 seconds of attempting to connect. There is an option to customize the timeout length in seconds by calling `setTimeoutLength`, which takes a `TimeInterval` parameter (aka a double). When a timeout occurs an error will be sent to the ErrorHandler and the WebView will display a simple page stating that the connection timed out. If you do not want to display the timeout page you can catch the error in the ErrorHandler and close the SDK before it appears or timeout before the SDK does.
 
 ```swift
     quovoConnect.setTimeoutLength(seconds:5)

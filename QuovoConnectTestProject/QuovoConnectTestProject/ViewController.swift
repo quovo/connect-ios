@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         print(response)
     }
     
+    func error(errorType: String, errorCode: Int, errorMessage: String) {
+        print(errorMessage)
+    }
+    
     @IBAction func launch(_ sender: Any) {
         // Use your API token and user id to get a token for the user
         let apiToken = "d0423077f6954e4f38e3556d1dab5b9cfc7e7fc5a8bb08a536809e192a94433f"
@@ -38,8 +42,9 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         let quovoConnect = QuovoConnectSDK()
                         quovoConnect.completionHandler = self.complete
+                        quovoConnect.errorHandler = self.error
                         quovoConnect.parentViewController = UIApplication.shared.keyWindow!.rootViewController
-                        quovoConnect.launch(token: userToken!, options:["testInstitutions":1,"singleSync":1])
+                        quovoConnect.launch(token: userToken!, options:["testInstitutions":1])
                         // Customize navigation bar  with paramaters 1) Transparency  2) Color  3) Title
                         quovoConnect.customizeNavigationBarApperance(isTranslucent: true, backGroundColor: UIColor.white, customTitle: "Quovo Connect")
                     }

@@ -1,13 +1,34 @@
-# Quovo Connect - iOS SDK
+# Quovo Connect SDK for iOS
 
 ## Latest Release
 
-### [v0.6.8](https://github.com/quovo/connect-ios/releases/tag/v0.6.8)
-* Added custom timeout
-* Added ability to statically close
-* Added embeddable UIView version
-* Fixed jarring keyboard issue
+### [v1.1.3](https://github.com/quovo/connect-ios/releases/tag/v1.1.3)
+* Connect v2 Support
+* Custom Subdomain Option
+* Added syncType and hideTray to options
+* Prevent Multiple Instances
 * Fixed various bugs
+
+
+## Table Of Contents
+<!--ts-->
+* [Installation](#installation)
+* [Using The Test Project](#using-the-test-project)
+* [Quovo Connect SDK](#quovo-connect-sdk)
+    * [Initialize the SDK](#initialize-the-connect-sdk)
+    * [Optionally specify a parent ViewController](#optionally-specify-a-parent-viewcontroller-for-connect)
+    * [Create a Completion Handler](#create-a-completion-handler-for-connect)
+    * [Create an Error Handler](#create-an-error-handler-for-connect)
+    * [Launch the SDK](#launch-the-connect-sdk)
+    * [Close the SDK](#close-the-connect-sdk)
+    * [Customization](#connect-customization)
+        * [Custom Navbar](#custom-connect-navbar)
+        * [Custom Timeout](#custom-connect-timeout)
+        * [Custom Subdomain](#custom-connect-subdomain)
+        * [Options](#options-for-connect)
+            * [Preselect an Institution](#preselect-an-institution)
+            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
+<!--te-->
 
 ## Installation
 
@@ -19,6 +40,7 @@ If needed install and setup cocoapods: https://guides.cocoapods.org/using/using-
 1. Add connect-ios to your project by adding the line `pod 'QuovoConnect'` to your `Podfile`.
 2. Run `pod install`
 3. Open the xcworkspace
+
 
 ### Using Carthage    
 If needed install and setup carthage: https://github.com/Carthage/Carthage#quick-start    
@@ -41,6 +63,7 @@ If needed install and setup carthage: https://github.com/Carthage/Carthage#quick
 2. Open the new 'Run Script' expander.    
 3. Enter this line into the script box:`/usr/local/bin/carthage outdated --xcode-warnings`
 
+
 ### Manual Installation
 
 1. Download or clone the framework from https://github.com/quovo/connect-ios
@@ -52,7 +75,14 @@ If needed install and setup carthage: https://github.com/Carthage/Carthage#quick
 This script is required to work around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) 
 
 
-## Initialize the SDK
+## Using the Test Project
+
+The test project included with the SDK uses a configuration plist file to generate its user token. The file is git-ignored but should be added to your copy of the test project. The file should be named "configuration.plist" and should contain a String field named "apiToken" and a Number field name "userId".
+
+
+## Quovo Connect SDK
+
+### Initialize the Connect SDK
 
 ```SWIFT
 import QuovoConnectSDK
@@ -60,14 +90,16 @@ let quovoConnect = QuovoConnectSDK()
 ```
 A good place to initialize the SDK is upon app launch or in the launch method of a view controller.
 
-## Optionally specifiy a parent ViewController
+
+### Optionally specify a parent ViewController for Connect
 
 ```SWIFT
 quovoConnect.parentViewController = UIApplication.shared.keyWindow!.rootViewController
 ```
 This allows you to control which ViewController the QuovoSDK UI will present on
 
-## Create a Completion Handler
+
+### Create a Completion Handler for Connect
 
 ```SWIFT
 func complete(callback: String, response: NSDictionary) {
@@ -121,7 +153,8 @@ The other callbacks will yield an empty response. For more information on these 
 
 (https://api.quovo.com/docs/connect/#custom-integrations)
 
-## Create an Error Handler
+
+### Create an Error Handler for Connect
 
 ```SWIFT
 func error(errorType: String, errorCode: Int, errorMessage: String) {
@@ -141,7 +174,8 @@ The Quovo specific codes include:
 
 * QUOVOERROR_CODE_MISSING_TOKEN:  1
 
-## Launch the SDK
+
+### Launch the Connect SDK
 
 Launching the QuovoConnectSDK will instantiate a WebView experience that allows users to sync and manage their accounts. The minimum required parameter for launching the WebView is an Iframe Token.  This token must be generated via the API and will expire after its first use. 
 
@@ -149,14 +183,14 @@ Launching the QuovoConnectSDK will instantiate a WebView experience that allows 
 quovoConnect.launch(token: "IFRAME TOKEN HERE")
 ```
 
-
 This WebView experience can also be created as a View, which can be embedded directly into your application. Note: This view has no Layout Constraints so you will need to add your own.
 
 ```swift
 let quovoView:UIView = quovoConnect.generateView(token: "IFRAME TOKEN HERE")
 ```
 
-## Close the SDK
+
+### Close the Connect SDK
 
 The QuovoConnectSDK can be closed statically by using the QuovoConnectSDK class. This allows the SDK to be closed from the parent ViewController as well as a push notification or other external message.
 
@@ -164,7 +198,53 @@ The QuovoConnectSDK can be closed statically by using the QuovoConnectSDK class.
 QuovoConnectSDK.close()
 ```
 
-## Customization
+
+### Connect Customization
+
+
+#### Custom Connect Navbar
+
+You also have the option to customize the navbar  for the QuovoConnect WebView. The three aspects of the navbar that can be customized are the translucency, the color, and the text. 
+
+The `isTranslucent` parameter will take precedence over the `backGroundColor` parameter. 
+
+```swift
+quovoConnect.customizeNavigationBarApperance(
+isTranslucent: true,
+//The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
+backGroundColor: UIColor.white, 
+//The backGroundColor parameter allows you to choose the color of the navbar.
+customTitle: "Quovo Connect")
+//The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
+```
+
+
+#### Custom Connect Timeout
+
+By default the Quovo Connect WebView will timeout after 30 seconds of attempting to connect. There is an option to customize the timeout length in seconds by calling `setTimeoutLength`, which takes a `TimeInterval` parameter (aka a double). When a timeout occurs an error will be sent to the ErrorHandler and the WebView will display a simple page stating that the connection timed out. If you do not want to display the timeout page you can catch the error in the ErrorHandler and close the SDK before it appears or timeout before the SDK does.
+
+```swift
+quovoConnect.setTimeoutLength(seconds:5)
+```
+
+
+#### Custom Connect Subdomain
+
+By default the Connect SDK will connect to the original Quovo Connect, however there is a way to use Connect v2. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v2, you can pass in `connect2`.
+
+```swift
+quovoConnect.setSubdomain(subdomain:"connect2")
+```
+
+Alternatively, you can also set a custom subdomain from within the launch function. Simply add the `subdomain` parameter after the token or options.
+
+```swift
+quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect2")
+```
+Note that if you set the subdomain using both setSubdomain and launch, the launch subdomain will override the set subdomain.
+
+
+#### Options for Connect
 
 You can optionally pass in a set of parameters that control the appearance and functionality of the WebView experience.  An example of this is:
 
@@ -172,7 +252,7 @@ You can optionally pass in a set of parameters that control the appearance and f
 quovoConnect.launch(
 token: "IFRAME TOKEN HERE",
 options: [
-"testInstitutions": 1,
+"searchTest": 1,
 "topInstitutions": "banks",
 ]
 )
@@ -188,8 +268,11 @@ The following is a list of the optional parameters that can be supplied to the l
 | searchTest           | integer (bit) | 0             | If on, Quovo test institutions will be searchable within Connect. |
 | openInstitution      | integer       |               | [See Preselect an Institution](#preselect-an-institution) |
 | openConnection       | integer       |               | [See Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection) |
+| hideTray  | integer (bit) | 0 |   If on, the tray showing notifications will be hidden (Note: Only applies to Connect v2) |
+| syncType             | String       |                | Choose what type of connection syncs are performed within Connect. Possible values are `agg`, `auth`, or `both`, which will simultaneously run an agg AND auth sync on new connections. This parameter is optional and will default to agg. More information on integrating account verification with Connect can be found here. (https://api.quovo.com/docs/v3/ui/#auth)
 
-## Preselect an Institution
+
+##### Preselect an Institution
 
 You may want to direct users to add Accounts onto specific institutions. With Connect, you can preselect an institution for users and bypass the search page entirely.
 
@@ -206,7 +289,8 @@ options: [
 )
 ```
 
-## Update or Resolve Issues on an Existing Connection
+
+##### Update or Resolve Issues on an Existing Connection
 
 You may want users to update or resolve issues on existing connections. They may need to supply additional MFA answers or update recently changed login credentials. With Connect, you can simply pass an Account ID to direct users to fix these issues, allowing their Accounts to continue syncing. Connections with a "login" status will be taken to a screen where users can update their credentials, while connections with a "questions" status will be taken to a screen where users are prompted to answer additional MFA questions.
 
@@ -223,31 +307,3 @@ options: [
 ]
 )
 ```
-
-## Custom Navbar
-
-You also have the option to customize the navbar  for the QuovoConnect WebView. The three aspects of the navbar that can be customized are the translucency, the color, and the text. 
-
-The `isTranslucent` parameter will take precedence over the `backGroundColor` parameter. 
-
-```swift
- quovoConnect.customizeNavigationBarApperance(
-    isTranslucent: true,
-    //The paramater isTranslucent is a boolean that can make the navigation bar  transparent.
-    backGroundColor: UIColor.white, 
-    //The backGroundColor parameter allows you to choose the color of the navbar.
-    customTitle: "Quovo Connect")
-    //The customTitle parameter allows you to choose the text displayed in the navbar. Passing an empty string will result in no text being displayed.
-```
-
-## Custom Timeout
-
-By default the Quovo Connect WebView will timeout after 30 seconds of attempting to connect. There is an option to customize the timeout length in seconds by calling `setTimeoutLength`, which takes a `TimeInterval` parameter (aka a double). When a timeout occurs an error will be sent to the ErrorHandler and the WebView will display a simple page stating that the connection timed out. If you do not want to display the timeout page you can catch the error in the ErrorHandler and close the SDK before it appears or timeout before the SDK does.
-
-```swift
-    quovoConnect.setTimeoutLength(seconds:5)
-```
-
-## Using the Test Project
-
-The test project included with the SDK uses a configuration plist file to generate its user token. The file is git-ignored but should be added to your copy of the test project. The file should be named "configuration.plist" and should contain a String field named "apiToken" and a Number field name "userId".

@@ -2,11 +2,8 @@
 
 ## Latest Release
 
-### [v1.1.3](https://github.com/quovo/connect-ios/releases/tag/v1.1.3)
-* Connect v2 Support
-* Custom Subdomain Option
-* Added syncType and hideTray to options
-* Prevent Multiple Instances
+### [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4)
+* Fixed issue with setSubdomain
 * Fixed various bugs
 
 

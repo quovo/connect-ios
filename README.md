@@ -24,15 +24,10 @@
         * [Custom Navbar](#custom-connect-navbar)
         * [Custom Timeout](#custom-connect-timeout)
         * [Custom Subdomain](#custom-connect-subdomain)
-        * [Options for Connect](#options-for-connect)
-            * [Preselect an Institution](#preselect-an-institution)
-            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
-        [Options for Connect](#options-for-connect)
-            * [Preselect an Institution](#preselect-an-institution)
-            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
-         * [Options for Connect v2](#options-for-connect-v2)
-            * [Preselect an Institution](#preselect-an-institution)
-            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
+        * [Options for Connect v1](#options-for-connect)
+        * [Options for Connect v2](#options-for-connect-v2)
+        * [Preselect an Institution](#preselect-an-institution)
+        * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
 <!--te-->
 
 ## Installation
@@ -296,41 +291,6 @@ The following is a list of the optional parameters that can be supplied to the l
 | syncType             | String       |                | Choose what type of connection syncs are performed within Connect. Possible values are `agg`, `auth`, or `both`, which will simultaneously run an agg AND auth sync on new connections. This parameter is optional and will default to agg. More information on integrating account verification with Connect can be found here. (https://api.quovo.com/docs/v3/ui/#auth)
 
 
-##### Preselect an Institution
-
-You may want to direct users to add Accounts onto specific institutions. With Connect, you can preselect an institution for users and bypass the search page entirely.
-
-Pass the desired Quovo Brokerage ID as the value.
-
-```swift
-quovoConnect.launch(
-token: "IFRAME TOKEN HERE",
-options: [
-// Connect will bypass the search page and open directly to the page to
-// add a "Fidelity NetBenefits" Account (which has a Brokerage ID of 23).
-"openInstitution": 23,
-]
-)
-```
-
-
-##### Update or Resolve Issues on an Existing Connection
-
-You may want users to update or resolve issues on existing connections. They may need to supply additional MFA answers or update recently changed login credentials. With Connect, you can simply pass an Account ID to direct users to fix these issues, allowing their Accounts to continue syncing. Connections with a "login" status will be taken to a screen where users can update their credentials, while connections with a "questions" status will be taken to a screen where users are prompted to answer additional MFA questions.
-
-If both `openConnection` and `openInstitution` arguments are supplied to `launch`, the `openConnection` workflow will take priority.
-
-```swift
-quovoConnect.launch(
-token: "IFRAME TOKEN HERE",
-options: [
-// Account 813981 has a status of "questions", so Connect will open to a
-// page where the user can answer any outstanding MFA questions and resync
-// the Account accordingly.
-"openConnection": 813981,
-]
-)
-```
 ### Options for Connect v2
 
 You can optionally pass in a set of parameters that control the appearance and functionality of the WebView experience.  An example of this is:

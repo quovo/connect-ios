@@ -15,6 +15,8 @@
     * [Initialize the SDK](#initialize-the-connect-sdk)
     * [Optionally specify a parent ViewController](#optionally-specify-a-parent-viewcontroller-for-connect)
     * [Create a Completion Handler](#create-a-completion-handler-for-connect)
+        * [Connect v1 Callbacks](#connect-v1-callbacks)
+        * [Connect v2 Callbacks](#connect-v2-callbacks)
     * [Create an Error Handler](#create-an-error-handler-for-connect)
     * [Launch the SDK](#launch-the-connect-sdk)
     * [Close the SDK](#close-the-connect-sdk)
@@ -22,7 +24,13 @@
         * [Custom Navbar](#custom-connect-navbar)
         * [Custom Timeout](#custom-connect-timeout)
         * [Custom Subdomain](#custom-connect-subdomain)
-        * [Options](#options-for-connect)
+        * [Options for Connect](#options-for-connect)
+            * [Preselect an Institution](#preselect-an-institution)
+            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
+        [Options for Connect](#options-for-connect)
+            * [Preselect an Institution](#preselect-an-institution)
+            * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
+         * [Options for Connect v2](#options-for-connect-v2)
             * [Preselect an Institution](#preselect-an-institution)
             * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)
 <!--te-->
@@ -105,15 +113,34 @@ func complete(callback: String, response: NSDictionary) {
 
 quovoConnect.completionHandler = complete
 ```
-The completion handler will allow your app to listen for events that will be fired by the QuovoConnectSDK.  The handler has 2 parameters: a "callback" method name and an optional "response" payload. The "callback" string will be one of the following:
+The completion handler will allow your app to listen for events that will be fired by the QuovoConnectSDK.  The handler has 2 parameters: a "callback" method name and an optional "response" payload. 
+
+### Connect v1 Callbacks
+
+The "callback" strings supported by connect v1 are the following:
 
 * open
 * load
 * close
 * add
 * sync
+* onAuthenticate
 
-In the case of "add" and "sync" a response payload of type NSDictionary will be returned.
+In the case of "add", "sync" and "onAuthenticate" a response payload of type NSDictionary will be returned.
+
+### Connect v2 Callbacks
+
+The "callback" strings supported by connect v2 are the following:
+
+* open
+* load
+* close
+* add
+* sync
+* onAuthenticate
+* onAuthAccountSelected
+
+In the case of "add", "sync",  "onAuthenticate" and onAuthAccountSelected a response payload of type NSDictionary will be returned.
 
 Here are some examples:
 
@@ -241,7 +268,7 @@ quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect2")
 Note that if you set the subdomain using both setSubdomain and launch, the launch subdomain will override the set subdomain.
 
 
-#### Options for Connect
+#### Options for Connect v1
 
 You can optionally pass in a set of parameters that control the appearance and functionality of the WebView experience.  An example of this is:
 
@@ -288,6 +315,83 @@ options: [
 
 
 ##### Update or Resolve Issues on an Existing Connection
+
+You may want users to update or resolve issues on existing connections. They may need to supply additional MFA answers or update recently changed login credentials. With Connect, you can simply pass an Account ID to direct users to fix these issues, allowing their Accounts to continue syncing. Connections with a "login" status will be taken to a screen where users can update their credentials, while connections with a "questions" status will be taken to a screen where users are prompted to answer additional MFA questions.
+
+If both `openConnection` and `openInstitution` arguments are supplied to `launch`, the `openConnection` workflow will take priority.
+
+```swift
+quovoConnect.launch(
+token: "IFRAME TOKEN HERE",
+options: [
+// Account 813981 has a status of "questions", so Connect will open to a
+// page where the user can answer any outstanding MFA questions and resync
+// the Account accordingly.
+"openConnection": 813981,
+]
+)
+```
+### Options for Connect v2
+
+You can optionally pass in a set of parameters that control the appearance and functionality of the WebView experience.  An example of this is:
+
+```swift
+quovoConnect.launch(
+token: "IFRAME TOKEN HERE",
+options: [
+"searchTest": 1,
+"topInstitutions": "banks",
+]
+)
+```
+
+The following is a list of the optional parameters that can be supplied to the launch method for Connect2:
+
+| Field                | Type          | Default       | Description |
+| -------------------- | ------------- | ------------- | ----------- |
+| topInstitutions      | string or array    | 'all'         | Choose what type of institutions, if any, will be displayed in the Top Institutions portion of the institution select screen. Possible values are `banks`, `brokerages`, `all`, or `none`. <br>If you'd like to customize the default institutions you can pass in an array of institution ids like: `[1249,1209,2779,2782]` |
+| searchTest           | integer (bit) | 0             | If on, Quovo test institutions will be searchable within Connect. |
+| openInstitution      | integer       |               | [See Preselect an Institution](#preselect-an-institution) |
+| openConnection       | integer       |               | [See Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection) |
+| hideTray  | integer (bit) | 0 |   If on, the tray showing notifications will be hidden |
+| syncType             | String       |                | Choose what type of connection syncs are performed within Connect. Possible values are `agg`, `auth`, `aggBoth` or `authBoth`.  This parameter is optional and will default to agg.  Connect has specific screen flows that are configured for agg vs auth sync types if using  `aggBoth` or `authBoth` you will need to define which is the primary workflow for your users as it will simultaneously run an agg AND auth sync on new connections.  More information on integrating account verification with Connect can be found here. (https://api.quovo.com/docs/v3/ui/#auth)|
+| headerText           | string|              | Choose the global header text. This parameter is optional and will default to Connect Accounts.|
+| showManualAccounts   | integer (bit)|  0    | Choose whether the “Enter Manually” displays at bottom of landing page & search results. If False, this section will be hidden. This parameter is optional and will default to True.|
+| confirmClose         | integer (bit)|  1    | Defaults to `true`, setting to `false` will hide the prompt asking the user to confirm that they’d like to close the Connect Widget will be presented when the "close" icon is clicked.|
+
+<br>
+<br>
+<br>
+On Enter Credentials screen, there is messaging below the password field that can be configured using the fields below:
+<br>
+<br>
+<br>
+
+| Field                | Type          | Default       | Description |
+| -------------------- | ------------- | ------------- | ----------- |
+| learnMoreIsHidden    | integer (bit) |    0          | Defaults to `false`, setting to `true` will hide the "We use bank-level encryption to keep your data secure. Learn More"|
+| learnMoreInfoMessage           | string|           | Configure text for "We use bank-level encryption to keep your data secure. Learn More". This parameter is optional and will default to text above.|
+| learnMoreText           | string|              | Configure text for "Learn More". This parameter is optional and will default to text above.|
+| learnMoreUrl           | string|              | By default this is set to `false` and when clicking the text "Learn More", you will be re-directed to https://www.quovo.com/infosec/. Configure by entering url into this parameter.|
+
+
+
+#### Preselect an Institution
+
+You may want to direct users to add Accounts onto specific institutions. With Connect, you can preselect an institution for users and bypass the search page entirely.
+
+Pass the desired Quovo Instition ID as the value.
+
+```java
+HashMap<String, Object> options = new HashMap<>();
+// Connect will bypass the search page and open directly to the page to
+// add a "Fidelity NetBenefits" Account (which has a Brokerage ID of 23).
+options.put("openInstitution", 23);
+
+quovoConnectSdk.launch(userToken, options);
+```
+
+#### Update or Resolve Issues on an Existing Connection
 
 You may want users to update or resolve issues on existing connections. They may need to supply additional MFA answers or update recently changed login credentials. With Connect, you can simply pass an Account ID to direct users to fix these issues, allowing their Accounts to continue syncing. Connections with a "login" status will be taken to a screen where users can update their credentials, while connections with a "questions" status will be taken to a screen where users are prompted to answer additional MFA questions.
 

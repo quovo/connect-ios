@@ -24,7 +24,7 @@
         * [Custom Navbar](#custom-connect-navbar)
         * [Custom Timeout](#custom-connect-timeout)
         * [Custom Subdomain](#custom-connect-subdomain)
-        * [Options for Connect v1](#options-for-connect)
+        * [Options for Connect v1](#options-for-connect-v1)
         * [Options for Connect v2](#options-for-connect-v2)
         * [Preselect an Institution](#preselect-an-institution)
         * [Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection)

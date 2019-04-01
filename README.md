@@ -2,9 +2,8 @@
 
 ## Latest Release
 
-### [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4)
-* Fixed issue with setSubdomain
-* Fixed various bugs
+### [v1.1.5](https://github.com/quovo/connect-ios/releases/tag/v1.1.5)
+* Fixed issue with compiling with Swft 5.0
 
 
 ## Table Of Contents

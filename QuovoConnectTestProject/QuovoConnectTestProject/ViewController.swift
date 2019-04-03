@@ -27,8 +27,19 @@ class ViewController: UIViewController {
     
     @IBAction func launch(_ sender: Any) {
         // Use your API token and user id to get a token for the user
-        let apiToken = "d0423077f6954e4f38e3556d1dab5b9cfc7e7fc5a8bb08a536809e192a94433f"
-        let userId = 7498 // user id
+        
+        
+        var apiToken = ""
+        var userId = 0
+        if let path = Bundle.main.path(forResource: "configuration", ofType: "plist"),
+            let myDict = NSDictionary(contentsOfFile: path){
+            if let token = myDict["apiToken"] as? String{
+                apiToken = token
+            }
+            if let id = myDict["userId"] as? Int{
+                userId = id
+            }
+        }
 
         let userTokenRequest = buildUserTokenRequest(apiToken: apiToken, userId: userId)
         

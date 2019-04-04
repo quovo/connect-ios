@@ -5,6 +5,13 @@
 ### [v1.1.6](https://github.com/quovo/connect-ios/releases/tag/v1.1.6)
 * Fixed issue compiling with swift 5 (Xcode 10.2)
 
+### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5 compilers.  If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4) by pinning your pod to it like: 
+`pod 'QuovoConnect', '1.1.4'`
+<br>
+or Carthage like:
+<br>
+`binary "https://raw.githubusercontent.com/quovo/connect-ios/master/QuovoConnectSDK.json" == 1.1.4`
+
 
 ## Table Of Contents
 <!--ts-->

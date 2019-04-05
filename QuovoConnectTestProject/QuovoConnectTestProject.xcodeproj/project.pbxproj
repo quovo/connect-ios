@@ -12,8 +12,7 @@
 		86A1B4CC1EEADD6D00BF1947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CA1EEADD6D00BF1947 /* Main.storyboard */; };
 		86A1B4CE1EEADD6D00BF1947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */; };
 		86A1B4D11EEADD6D00BF1947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CF1EEADD6D00BF1947 /* LaunchScreen.storyboard */; };
-		86A1B4E41EEADF8800BF1947 /* QuovoConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A1B4E11EEADF3700BF1947 /* QuovoConnectSDK.framework */; };
-		86A1B4E61EEADF9A00BF1947 /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86A1B4E11EEADF3700BF1947 /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D1E4AE7F2256EBCD00D7B281 /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1FAA765219CCE4B005E8DEA /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1FAA764219CCE4B005E8DEA /* configuration.plist */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				86A1B4E61EEADF9A00BF1947 /* QuovoConnectSDK.framework in Embed Frameworks */,
+				D1E4AE7F2256EBCD00D7B281 /* QuovoConnectSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +63,7 @@
 		86A1B4D01EEADD6D00BF1947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A1B4D21EEADD6D00BF1947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuovoConnectSDK.xcodeproj; path = ../QuovoConnectSDK/QuovoConnectSDK.xcodeproj; sourceTree = "<group>"; };
+		D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuovoConnectSDK.framework; sourceTree = "<group>"; };
 		F1FAA764219CCE4B005E8DEA /* configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A1B4E41EEADF8800BF1947 /* QuovoConnectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +81,7 @@
 		86A1B4BA1EEADD6D00BF1947 = {
 			isa = PBXGroup;
 			children = (
+				D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */,
 				86A1B4C51EEADD6D00BF1947 /* QuovoConnectTestProject */,
 				86A1B4C41EEADD6D00BF1947 /* Products */,
 				86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */,
@@ -357,6 +357,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuovoConnectTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quovo.QuovoConnectTestProject;
@@ -376,6 +380,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuovoConnectTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quovo.QuovoConnectTestProject;

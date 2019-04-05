@@ -12,18 +12,42 @@
 		86A1B4CC1EEADD6D00BF1947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CA1EEADD6D00BF1947 /* Main.storyboard */; };
 		86A1B4CE1EEADD6D00BF1947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */; };
 		86A1B4D11EEADD6D00BF1947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A1B4CF1EEADD6D00BF1947 /* LaunchScreen.storyboard */; };
-		F1E14E1121628098006720DD /* QuovoConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E14E1021628098006720DD /* QuovoConnectSDK.framework */; };
-		F1E14E1221628098006720DD /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1E14E1021628098006720DD /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D1E4AE7F2256EBCD00D7B281 /* QuovoConnectSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1FAA765219CCE4B005E8DEA /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1FAA764219CCE4B005E8DEA /* configuration.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		86A1B4E01EEADF3700BF1947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86A1B4A41EEADA4000BF1947;
+			remoteInfo = QuovoConnectSDK;
+		};
+		86A1B4E21EEADF4700BF1947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 86A1B4AF1EEADA9D00BF1947;
+			remoteInfo = universalTarget;
+		};
+		D14230752255223D0016B2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F14CA9442199C82B00136041;
+			remoteInfo = QuovoConnectSDKTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		7082EDE8213030890099B570 /* Embed Frameworks */ = {
+		86A1B4E91EEADF9A00BF1947 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1E14E1221628098006720DD /* QuovoConnectSDK.framework in Embed Frameworks */,
+				D1E4AE7F2256EBCD00D7B281 /* QuovoConnectSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +62,9 @@
 		86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A1B4D01EEADD6D00BF1947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A1B4D21EEADD6D00BF1947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1E14E1021628098006720DD /* QuovoConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuovoConnectSDK.framework; sourceTree = "<group>"; };
+		86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuovoConnectSDK.xcodeproj; path = ../QuovoConnectSDK/QuovoConnectSDK.xcodeproj; sourceTree = "<group>"; };
+		D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuovoConnectSDK.framework; sourceTree = "<group>"; };
+		F1FAA764219CCE4B005E8DEA /* configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1E14E1121628098006720DD /* QuovoConnectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +81,10 @@
 		86A1B4BA1EEADD6D00BF1947 = {
 			isa = PBXGroup;
 			children = (
-				F1E14E1021628098006720DD /* QuovoConnectSDK.framework */,
+				D1E4AE7D2256EBBE00D7B281 /* QuovoConnectSDK.framework */,
 				86A1B4C51EEADD6D00BF1947 /* QuovoConnectTestProject */,
 				86A1B4C41EEADD6D00BF1947 /* Products */,
+				86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,8 +105,18 @@
 				86A1B4CD1EEADD6D00BF1947 /* Assets.xcassets */,
 				86A1B4CF1EEADD6D00BF1947 /* LaunchScreen.storyboard */,
 				86A1B4D21EEADD6D00BF1947 /* Info.plist */,
+				F1FAA764219CCE4B005E8DEA /* configuration.plist */,
 			);
 			path = QuovoConnectTestProject;
+			sourceTree = "<group>";
+		};
+		86A1B4DC1EEADF3700BF1947 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86A1B4E11EEADF3700BF1947 /* QuovoConnectSDK.framework */,
+				D14230762255223D0016B2D4 /* QuovoConnectSDKTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,12 +129,12 @@
 				86A1B4BF1EEADD6D00BF1947 /* Sources */,
 				86A1B4C01EEADD6D00BF1947 /* Frameworks */,
 				86A1B4C11EEADD6D00BF1947 /* Resources */,
-				7082EDE8213030890099B570 /* Embed Frameworks */,
-				F1E14E13216280AD006720DD /* ShellScript */,
+				86A1B4E91EEADF9A00BF1947 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				86A1B4E31EEADF4700BF1947 /* PBXTargetDependency */,
 			);
 			name = QuovoConnectTestProject;
 			productName = QuovoConnectTestProject;
@@ -127,12 +163,19 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = 86A1B4BA1EEADD6D00BF1947;
 			productRefGroup = 86A1B4C41EEADD6D00BF1947 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86A1B4DC1EEADF3700BF1947 /* Products */;
+					ProjectRef = 86A1B4DB1EEADF3700BF1947 /* QuovoConnectSDK.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				86A1B4C21EEADD6D00BF1947 /* QuovoConnectTestProject */,
@@ -140,38 +183,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		86A1B4E11EEADF3700BF1947 /* QuovoConnectSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = QuovoConnectSDK.framework;
+			remoteRef = 86A1B4E01EEADF3700BF1947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D14230762255223D0016B2D4 /* QuovoConnectSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = QuovoConnectSDKTests.xctest;
+			remoteRef = D14230752255223D0016B2D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		86A1B4C11EEADD6D00BF1947 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				86A1B4D11EEADD6D00BF1947 /* LaunchScreen.storyboard in Resources */,
+				F1FAA765219CCE4B005E8DEA /* configuration.plist in Resources */,
 				86A1B4CE1EEADD6D00BF1947 /* Assets.xcassets in Resources */,
 				86A1B4CC1EEADD6D00BF1947 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F1E14E13216280AD006720DD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/bin/sh $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/QuovoConnectSDK.framework/cleanForAppStore.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86A1B4BF1EEADD6D00BF1947 /* Sources */ = {
@@ -184,6 +225,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		86A1B4E31EEADF4700BF1947 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = universalTarget;
+			targetProxy = 86A1B4E21EEADF4700BF1947 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		86A1B4CA1EEADD6D00BF1947 /* Main.storyboard */ = {
@@ -303,7 +352,10 @@
 		86A1B4D61EEADD6D00BF1947 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -313,7 +365,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quovo.QuovoConnectTestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -321,7 +375,10 @@
 		86A1B4D71EEADD6D00BF1947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -331,7 +388,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quovo.QuovoConnectTestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

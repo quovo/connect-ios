@@ -2,8 +2,10 @@
 
 ## Latest Release
 
-### [v1.1.6](https://github.com/quovo/connect-ios/releases/tag/v1.1.6)
-* Fixed issue compiling with swift 5 (Xcode 10.2)
+### [v1.1.7](https://github.com/quovo/connect-ios/releases/tag/v1.1.7)
+* Fixed issue opening hyperlinks
+* Prevent zooming
+* Default to using Connect v2.  To configure to use connect v1 see [Custom Subdomain](#custom-connect-subdomain)
 
 ### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5 compilers.  If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4) by pinning your pod to it like: 
 `pod 'QuovoConnect', '1.1.4'`
@@ -255,16 +257,16 @@ quovoConnect.setTimeoutLength(seconds:5)
 
 #### Custom Connect Subdomain
 
-By default the Connect SDK will connect to the original Quovo Connect, however there is a way to use Connect v2. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v2, you can pass in `connect2`.
+By default the Connect SDK will connect to Connect v2, however there is a way to use Connect v1. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v1, you can pass in `connect`.
 
 ```swift
-quovoConnect.setSubdomain(subdomain:"connect2")
+quovoConnect.setSubdomain(subdomain:"connect")
 ```
 
 Alternatively, you can also set a custom subdomain from within the launch function. Simply add the `subdomain` parameter after the token or options.
 
 ```swift
-quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect2")
+quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect")
 ```
 Note that if you set the subdomain using both setSubdomain and launch, the launch subdomain will override the set subdomain.
 
@@ -289,10 +291,10 @@ The following is a list of the optional parameters that can be supplied to the l
 | -------------------- | ------------- | ------------- | ----------- |
 | topInstitutions      | string        | 'all'         | Choose what type of institutions, if any, will be displayed in the Top Institutions portion of the institution select screen. Possible values are `banks`, `brokerages`, `all`, or `none`. |
 | enableAuthDeposits   | integer (bit) | 0             | If on, the [Auth Deposits](https://api.quovo.com/docs/auth/#auth_deposits) workflow will be enabled within Connect. This lets end users verify their bank accounts on any institution not covered by instant account verification. Note: This workflow is _not_ available by default. [Contact us](mailto:support@quovo.com) if you would like access to Auth Deposits within Connect. |
-| singleSync           | Boolean | 0             | If true, the back arrow on the top left will be removed and “Add Another” button will be hidden during the syncing workflow and the playback steps. This parameter is optional and will default to false. |
 | searchTest           | integer (bit) | 0             | If on, Quovo test institutions will be searchable within Connect. |
 | openInstitution      | integer       |               | [See Preselect an Institution](#preselect-an-institution) |
 | openConnection       | integer       |               | [See Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection) |
+| singleSync  | boolean | 0 |   If true, the back arrow on the top left will be removed and “Add Another” button will be hidden during the syncing workflow and the playback steps. This parameter is optional and will default to false. |
 | hideTray  | integer (bit) | 0 |   If on, the tray showing notifications will be hidden (Note: Only applies to Connect v2) |
 | syncType             | String       |                | Choose what type of connection syncs are performed within Connect. Possible values are `agg`, `auth`, or `both`, which will simultaneously run an agg AND auth sync on new connections. This parameter is optional and will default to agg. More information on integrating account verification with Connect can be found here. (https://api.quovo.com/docs/v3/ui/#auth)
 
@@ -319,7 +321,7 @@ The following is a list of the optional parameters that can be supplied to the l
 | searchTest           | integer (bit) | 0             | If on, Quovo test institutions will be searchable within Connect. |
 | openInstitution      | integer       |               | [See Preselect an Institution](#preselect-an-institution) |
 | openConnection       | integer       |               | [See Update or Resolve Issues on an Existing Connection](#update-or-resolve-issues-on-an-existing-connection) |
-| singleSync           | Boolean | 0             | If true, the back arrow on the top left will be removed and “Add Another” button will be hidden during the syncing workflow and the playback steps. This parameter is optional and will default to false. |
+| singleSync  | boolean | 0 |   If true, the back arrow on the top left will be removed and “Add Another” button will be hidden during the syncing workflow and the playback steps. This parameter is optional and will default to false. |
 | hideTray  | integer (bit) | 0 |   If on, the tray showing notifications will be hidden |
 | syncType             | String       |                | Choose what type of connection syncs are performed within Connect. Possible values are `agg`, `auth`, `aggBoth` or `authBoth`.  This parameter is optional and will default to agg.  Connect has specific screen flows that are configured for agg vs auth sync types if using  `aggBoth` or `authBoth` you will need to define which is the primary workflow for your users as it will simultaneously run an agg AND auth sync on new connections.  More information on integrating account verification with Connect can be found here. (https://api.quovo.com/docs/v3/ui/#auth)|
 | headerText           | string|              | Choose the global header text. This parameter is optional and will default to Connect Accounts.|

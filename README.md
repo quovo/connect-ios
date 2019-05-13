@@ -5,6 +5,7 @@
 ### [v1.1.7](https://github.com/quovo/connect-ios/releases/tag/v1.1.7)
 * Fixed issue opening hyperlinks
 * Prevent zooming
+* Default to using Connect v2.  To configure to use connect v1 see [Custom Subdomain](#custom-connect-subdomain)
 
 ### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5 compilers.  If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4) by pinning your pod to it like: 
 `pod 'QuovoConnect', '1.1.4'`
@@ -256,16 +257,16 @@ quovoConnect.setTimeoutLength(seconds:5)
 
 #### Custom Connect Subdomain
 
-By default the Connect SDK will connect to Connect v1, however there is a way to use Connect v2. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v2, you can pass in `connect2`.
+By default the Connect SDK will connect to Connect v2, however there is a way to use Connect v1. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v1, you can pass in `connect`.
 
 ```swift
-quovoConnect.setSubdomain(subdomain:"connect2")
+quovoConnect.setSubdomain(subdomain:"connect")
 ```
 
 Alternatively, you can also set a custom subdomain from within the launch function. Simply add the `subdomain` parameter after the token or options.
 
 ```swift
-quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect2")
+quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect")
 ```
 Note that if you set the subdomain using both setSubdomain and launch, the launch subdomain will override the set subdomain.
 

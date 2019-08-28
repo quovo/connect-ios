@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'QuovoConnect'
-  s.version          = '1.1.7'
+  s.version          = '1.1.8'
   s.summary          = 'Quovo Connect Swift SDK'
 
   s.description      = <<-DESC

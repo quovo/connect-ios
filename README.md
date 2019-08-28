@@ -2,12 +2,19 @@
 
 ## Latest Release
 
-### [v1.1.7](https://github.com/quovo/connect-ios/releases/tag/v1.1.7)
-* Fixed issue opening hyperlinks
-* Prevent zooming
-* Default to using Connect v2.  To configure to use connect v1 see [Custom Subdomain](#custom-connect-subdomain)
+### [v1.1.8](https://github.com/quovo/connect-ios/releases/tag/v1.1.8)
+* support Swift 5.1 complier on Xcode 11
 
-### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5 compilers.  If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4) by pinning your pod to it like: 
+### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5.1 compilers (Xcode 11).  
+<br>
+If you are using a Swift 5.0 (Xcode 10.x) complier you must use Quovo Connect SDK [v1.1.7](https://github.com/quovo/connect-ios/releases/tag/v1.1.7) by pinning your pod to it like: 
+`pod 'QuovoConnect', '1.1.7'`
+<br>
+or Carthage like:
+<br>
+`binary "https://raw.githubusercontent.com/quovo/connect-ios/master/QuovoConnectSDK.json" == 1.1.7`
+<br>
+If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](https://github.com/quovo/connect-ios/releases/tag/v1.1.4) by pinning your pod to it like: 
 `pod 'QuovoConnect', '1.1.4'`
 <br>
 or Carthage like:
@@ -257,16 +264,16 @@ quovoConnect.setTimeoutLength(seconds:5)
 
 #### Custom Connect Subdomain
 
-By default the Connect SDK will connect to Connect v2, however there is a way to use Connect v1. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v1, you can pass in `connect`.
+By default the Connect SDK will connect to the original Quovo Connect, however there is a way to use Connect v2. By calliing `setSubdomain` (which takes a `String`) you can set a custom subdomain to be used when loading connect. If you want to load Connect v2, you can pass in `connect2`.
 
 ```swift
-quovoConnect.setSubdomain(subdomain:"connect")
+quovoConnect.setSubdomain(subdomain:"connect2")
 ```
 
 Alternatively, you can also set a custom subdomain from within the launch function. Simply add the `subdomain` parameter after the token or options.
 
 ```swift
-quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect")
+quovoConnect.launch(token: "IFRAME TOKEN HERE",subdomain:"connect2")
 ```
 Note that if you set the subdomain using both setSubdomain and launch, the launch subdomain will override the set subdomain.
 

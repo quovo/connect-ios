@@ -2,7 +2,7 @@
 
 ## Latest Release
 
-### [v1.1.9](https://github.com/quovo/connect-ios/releases/tag/v1.1.9)
+### [v1.1.10](https://github.com/quovo/connect-ios/releases/tag/v1.1.10)
 * support Swift 5.1.2 complier on Xcode 11.2
 
 ### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5.1.2 compilers (Xcode 11.2).  
@@ -20,7 +20,7 @@ If you are using a Swift 4 complier you must use Quovo Connect SDK [v1.1.4](http
 or Carthage like:
 <br>
 `binary "https://raw.githubusercontent.com/quovo/connect-ios/master/QuovoConnectSDK.json" == 1.1.4`
-<br>all other release are [here](https://github.com/quovo/connect-ios/releases)
+<br>all other release are located at https://github.com/quovo/connect-ios/releases
 
 
 ## Table Of Contents

@@ -2,10 +2,10 @@
 
 ## Latest Release
 
-### [v1.1.11](https://github.com/quovo/connect-ios/releases/tag/v1.1.11)
-* support Swift 5.2 complier on Xcode 11.4
+### [v1.1.12](https://github.com/quovo/connect-ios/releases/tag/v1.1.12)
+* support Swift 5.3 complier on Xcode 12.0
 
-### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5.2 compilers (Xcode 11.4).  
+### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5.3 compilers (Xcode 12.0).  
 <br>
 If you are using a Swift 5.0 (Xcode 10.x) complier you must use Quovo Connect SDK [v1.1.7](https://github.com/quovo/connect-ios/releases/tag/v1.1.7) by pinning your pod to it like: 
 `pod 'QuovoConnect', '1.1.7'`

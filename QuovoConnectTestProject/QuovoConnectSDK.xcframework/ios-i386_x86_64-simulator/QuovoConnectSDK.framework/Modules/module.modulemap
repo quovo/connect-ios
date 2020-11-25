@@ -1,0 +1,11 @@
+framework module QuovoConnectSDK {
+  umbrella header "QuovoConnectSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module QuovoConnectSDK.Swift {
+    header "QuovoConnectSDK-Swift.h"
+    requires objc
+}

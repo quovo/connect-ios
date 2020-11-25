@@ -2,8 +2,8 @@
 
 ## Latest Release
 
-### [v1.1.12](https://github.com/quovo/connect-ios/releases/tag/v1.1.12)
-* support Swift 5.3 complier on Xcode 12.0
+### [v1.1.14](https://github.com/quovo/connect-ios/releases/tag/v1.1.14)
+* support Swift 5.3 complier on Xcode 12.0 using xcframework
 
 ### NOTE: This version of the Quovo Connect SDK is only compatible with Swift 5.3 compilers (Xcode 12.0).  
 <br>
@@ -64,15 +64,15 @@ If needed install and setup carthage: https://github.com/Carthage/Carthage#quick
 1. Add connect-ios to your project by adding the line `binary "https://raw.githubusercontent.com/quovo/connect-ios/master/QuovoConnectSDK.json"` to your `Cartfile`.
 2. Run `carthage update`    
 3. If carthage was successful, you should see the framework in the folder Carthage/Build/iOS    
-4. Drag the QuovoConnectSDK.framework into your project (Make sure "Copy Items If Needed" is selected)    
+4. Drag the QuovoConnectSDK.xcframework into your project (Make sure "Copy Items If Needed" is selected)    
 5. Highlight your project in the 'Project Navigator'.    
 6. Select the 'Build Phases' tab    
 7. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase"    
 8. Open the new 'Run Script' expander.    
 9. Enter this line into the script box:`/usr/local/bin/carthage copy-frameworks`    
 10. Click the + button under “Input Files", and enter: <br>    
-`$(SRCROOT)/Carthage/Build/iOS/QuovoConnectSDK.framework`    
-11. Click the + button under “Output Files", and enter: `$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/QuovoConnectSDK.framework`    
+`$(SRCROOT)/Carthage/Build/iOS/QuovoConnectSDK.xcframework`    
+11. Click the + button under “Output Files", and enter: `$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/QuovoConnectSDK.xcframework`    
 (note: Make sure to commit your Cartfile.resolved file)    
 ##### Optionally to warn about outdated dependencies    
 1. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase"    
@@ -83,11 +83,11 @@ If needed install and setup carthage: https://github.com/Carthage/Carthage#quick
 ### Manual Installation
 
 1. Download or clone the framework from https://github.com/quovo/connect-ios
-2. Open your project's General settings page. Drag QuovoConnectSDK.framework in to the "Embedded Binaries" section. Make sure `Copy items if needed` is selected.
+2. Open your project's General settings page. Drag QuovoConnectSDK.xcframework in to the "Embedded Binaries" section. Make sure `Copy items if needed` is selected.
 3. Click the + button at the top left corner of the Build Phases window and select "New Run Script Phase" (note: this should be below the 'Embed Frameworks' Phase)
 4. Open the new 'Run Script' expander.
 5. Enter this line into the script box:<br>
-`/bin/sh $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/QuovoConnectSDK.framework/cleanForAppStore.sh`<br>
+`/bin/sh $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/QuovoConnectSDK.xcframework/cleanForAppStore.sh`<br>
 This script is required to work around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) 
 
 
